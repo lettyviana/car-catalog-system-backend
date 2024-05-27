@@ -50,6 +50,10 @@ export async function verifyToken(request: NextRequest) {
       });
     }
 
+    if (decoded.status) {
+      return decoded;
+    }
+    
     return decoded;
   } catch (error: any) {
     if (error.name === "TokenExpiredError") {

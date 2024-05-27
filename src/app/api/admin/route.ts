@@ -1,4 +1,4 @@
-import { decrypt, verifyToken } from "@/lib/authentication";
+import { verifyToken } from "@/lib/authentication";
 import { Response } from "@/lib/helpers/standardMessage";
 import { AdminUserModel } from "@/lib/models/userModel";
 import { NextRequest } from "next/server";
