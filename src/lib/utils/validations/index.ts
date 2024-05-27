@@ -1,4 +1,3 @@
-import { Response } from "@/lib/helpers/standardMessage";
 import { AdminUserModel } from "@/lib/models/userModel";
 
 export async function checkExistingUser(email: string) {
