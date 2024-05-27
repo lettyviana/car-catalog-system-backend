@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { NextRequest } from "next/server";
 import { Response } from "../helpers/standardMessage";
+import { cookies } from "next/headers";
 
 const { JWT_SECRET_KEY } = process.env;
 
@@ -30,36 +31,22 @@ export async function verifyToken(request: NextRequest) {
   if (!auth) {
     return Response({
       object: {
-        error: "Você deve fazer o login.",
+        error: "Faça o login.",
         success: false,
       },
       status: 401,
     });
   }
 
+  let decoded;
+
   try {
-    const decoded = await decrypt(auth.value);
-
-    if (typeof decoded === "string") {
-      return Response({
-        object: {
-          error: "Token inválido.",
-          success: false,
-        },
-        status: 401,
-      });
-    }
-
-    if (decoded.status) {
-      return decoded;
-    }
-    
-    return decoded;
+    decoded = await decrypt(auth.value);
   } catch (error: any) {
     if (error.name === "TokenExpiredError") {
       return Response({
         object: {
-          error: "O token expirou. Faça login.",
+          error: "O Token expirou. Faça o login.",
           success: false,
         },
         status: 401,
@@ -74,4 +61,16 @@ export async function verifyToken(request: NextRequest) {
       status: 401,
     });
   }
+
+  if (typeof decoded === "string") {
+    return Response({
+      object: {
+        error: "Token inválido.",
+        success: false,
+      },
+      status: 401,
+    });
+  }
+
+  return decoded;
 }

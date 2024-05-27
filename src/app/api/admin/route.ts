@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   try {
     const decoded = await verifyToken(request);
 
-    if(!decoded.success) {
+    if (decoded.status) {
       return decoded;
     }
 

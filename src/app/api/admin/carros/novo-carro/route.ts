@@ -9,10 +9,11 @@ export async function POST(request: NextRequest) {
     await connectToDatabase();
     
     const decoded = await verifyToken(request);
-    if (!decoded.success) {
+
+    if (decoded.status) {
       return decoded;
     }
-    
+
     const { adminId } = decoded;
     const { name, make, model, photo, price, year, version } =
       await request.json();
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
     if (existingCar) {
       return Response({
         object: {
-          error: "Já existe um veículo com esse nome.",
+          error: "Já existe um carro com esse nome.",
           success: false,
         },
         status: 400,
@@ -56,7 +57,7 @@ export async function POST(request: NextRequest) {
       return Response({
         object: {
           error: null,
-          message: "Veículo cadastrado com sucesso!",
+          message: "Carro cadastrado com sucesso!",
           success: true,
         },
         status: 200,
@@ -76,7 +77,7 @@ export async function POST(request: NextRequest) {
         error: error.message,
         success: false,
       },
-      status: 500,
+      status: 501,
     });
   }
 }

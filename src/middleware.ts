@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const pathBaseUrl = request.nextUrl.pathname;
@@ -6,9 +6,9 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get("authentication") || "";
 
   if (isPublicPage && token) {
-    return NextResponse.redirect(new URL("/admin", request.nextUrl));
+    return Response.redirect(new URL("/admin", request.nextUrl));
   } else if (!isPublicPage && !token) {
-    return NextResponse.redirect(new URL("/login", request.nextUrl));
+    return Response.redirect(new URL("/login", request.nextUrl));
   }
 }
 
