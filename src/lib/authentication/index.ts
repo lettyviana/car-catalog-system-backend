@@ -37,10 +37,20 @@ export async function verifyToken(request: NextRequest) {
     });
   }
 
-  let decoded;
-
   try {
-    decoded = await decrypt(auth.value);
+    const decoded = await decrypt(auth.value);
+
+    if (typeof decoded === "string") {
+      return Response({
+        object: {
+          error: "Token inválido.",
+          success: false,
+        },
+        status: 401,
+      });
+    }
+
+    return decoded;
   } catch (error: any) {
     if (error.name === "TokenExpiredError") {
       return Response({
@@ -60,16 +70,4 @@ export async function verifyToken(request: NextRequest) {
       status: 401,
     });
   }
-
-  if (typeof decoded === "string") {
-    return Response({
-      object: {
-        error: "Token inválido.",
-        success: false,
-      },
-      status: 401,
-    });
-  }
-
-  return decoded;
 }

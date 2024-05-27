@@ -9,6 +9,10 @@ export async function POST(request: NextRequest) {
     await connectToDatabase();
     
     const decoded = await verifyToken(request);
+    if (!decoded.success) {
+      return decoded;
+    }
+    
     const { adminId } = decoded;
     const { name, make, model, photo, price, year, version } =
       await request.json();

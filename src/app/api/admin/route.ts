@@ -1,32 +1,14 @@
-import { decrypt } from "@/lib/authentication";
+import { decrypt, verifyToken } from "@/lib/authentication";
 import { Response } from "@/lib/helpers/standardMessage";
 import { AdminUserModel } from "@/lib/models/userModel";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
-    const auth = request.cookies.get("authentication") || "";
+    const decoded = await verifyToken(request);
 
-    if (!auth) {
-      return Response({
-        object: {
-          error: "Faça login para acessar esta página!",
-          success: false,
-        },
-        status: 401,
-      });
-    }
-
-    const decoded = await decrypt(auth.value);
-
-    if (typeof decoded === "string") {
-      return Response({
-        object: {
-          error: "Token inválido.",
-          success: false,
-        },
-        status: 401,
-      });
+    if(!decoded.success) {
+      return decoded;
     }
 
     const { adminId } = decoded;
