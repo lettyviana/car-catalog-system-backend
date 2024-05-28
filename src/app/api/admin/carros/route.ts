@@ -4,10 +4,10 @@ import { Response } from "@/lib/helpers/standardMessage";
 import { CarModel } from "@/lib/models/carModel";
 import { NextRequest } from "next/server";
 
+connectToDatabase();
+
 export async function GET(request: NextRequest) {
   try {
-    await connectToDatabase();
-
     const decoded = await verifyToken(request);
 
     if (decoded.status) {
@@ -49,8 +49,6 @@ export async function GET(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  await connectToDatabase();
-
   const decoded = await verifyToken(request);
 
   if (decoded.status) {
@@ -59,6 +57,29 @@ export async function DELETE(request: NextRequest) {
 
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
+
+  if (!id) {
+    return Response({
+      object: {
+        error: "A Id do veículo a excluir não foi fornecida.",
+        success: false,
+      },
+      status: 400,
+    });
+  }
+
+  const existingCar = await CarModel.findById(id);
+
+  if (!existingCar) {
+    return Response({
+      object: {
+        error: "Veículo não encontrado.",
+        success: false,
+      },
+      status: 404,
+    });
+  }
+
   await CarModel.findByIdAndDelete(id);
 
   return Response({

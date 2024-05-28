@@ -8,6 +8,8 @@ import {
 } from "@/lib/utils/validations";
 import bcrypt from "bcryptjs";
 
+connectToDatabase();
+
 export async function POST(request: Request) {
   const { username, email, password, confirmPassword } = await request.json();
 
@@ -66,7 +68,6 @@ export async function POST(request: Request) {
       password: hashedPassword,
       isAdmin: true,
     });
-    await connectToDatabase();
     await admin.save();
 
     return Response({

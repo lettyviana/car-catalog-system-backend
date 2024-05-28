@@ -4,9 +4,10 @@ import { Response } from "@/lib/helpers/standardMessage";
 import { AdminUserModel } from "@/lib/models/userModel";
 import bcrypt from "bcryptjs";
 
+connectToDatabase();
+
 export async function POST(request: Request) {
   try {
-    await connectToDatabase();
     const { email, password } = await request.json();
     const admin = await AdminUserModel.findOne({ email });
 

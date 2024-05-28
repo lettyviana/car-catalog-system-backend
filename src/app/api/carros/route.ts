@@ -4,10 +4,10 @@ import { Response } from "@/lib/helpers/standardMessage";
 import { CarModel } from "@/lib/models/carModel";
 import { NextRequest } from "next/server";
 
+connectToDatabase();
+
 export async function GET(request: NextRequest) {
   try {
-    await connectToDatabase();
-
     const decoded = await verifyToken(request);
 
     if (decoded.status) {
