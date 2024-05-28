@@ -48,3 +48,17 @@ export async function GET(request: NextRequest) {
   }
 }
 
+export async function DELETE(request: Request) {
+  await connectToDatabase();
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+  await CarModel.findByIdAndDelete(id);
+
+  return Response({
+    object: {
+      error: null,
+      message: "Carro excluído.",
+    },
+    status: 200,
+  });
+}
