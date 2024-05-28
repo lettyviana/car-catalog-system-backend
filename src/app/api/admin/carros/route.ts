@@ -48,8 +48,15 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function DELETE(request: Request) {
+export async function DELETE(request: NextRequest) {
   await connectToDatabase();
+
+  const decoded = await verifyToken(request);
+
+  if (decoded.status) {
+    return decoded;
+  }
+
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
   await CarModel.findByIdAndDelete(id);
