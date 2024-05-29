@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   try {
     const cars = await CarModel.find();
 
-    if (!cars) {
+    if (cars.length === 0) {
       return Response({
         object: {
           error: "Nenhum veículo encontrado.",

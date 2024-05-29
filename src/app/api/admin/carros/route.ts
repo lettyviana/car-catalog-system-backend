@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
     const cars = await CarModel.find({ adminId });
 
-    if (!cars) {
+    if (cars.length === 0) {
       return Response({
         object: {
           error: "Nenhum veículo encontrado.",

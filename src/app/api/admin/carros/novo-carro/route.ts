@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { adminId } = decoded;
-    const { name, make, model, photo, price, year, version } =
+    const { name, make, model, photo, price, year, version, miniCardPhoto } =
       await request.json();
 
     if (!name || !make || !model || !photo) {
@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
         make,
         model,
         photo,
+        miniCardPhoto,
         price,
         year,
         version,

@@ -38,6 +38,7 @@ export async function GET(
       make: car.make,
       model: car.model,
       photo: car.photo,
+      miniCardPhoto: car.miniCardPhoto,
       price: car.price,
       year: car.year,
       version: car.version,
