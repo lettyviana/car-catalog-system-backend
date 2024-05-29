@@ -1,5 +1,4 @@
 import connectToDatabase from "@/lib/dbConfig/connectToDatabase";
-import { verifyToken } from "@/lib/authentication";
 import { Response } from "@/lib/helpers/standardMessage";
 import { CarModel } from "@/lib/models/carModel";
 import { NextRequest } from "next/server";
@@ -8,12 +7,6 @@ connectToDatabase();
 
 export async function GET(request: NextRequest) {
   try {
-    const decoded = await verifyToken(request);
-
-    if (decoded.status) {
-      return decoded;
-    }
-
     const cars = await CarModel.find();
 
     if (!cars) {
