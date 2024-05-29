@@ -19,13 +19,16 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    const carMakes = allCars.map((car) => car.make);
+    const carInfo = allCars.map((car) => ({
+      make: car.make,
+      model: car.model,
+    }));
 
     return Response({
       object: {
         error: null,
         message: "Modelos encontrados.",
-        makes: carMakes,
+        makes: carInfo,
         success: true,
       },
       status: 200,
