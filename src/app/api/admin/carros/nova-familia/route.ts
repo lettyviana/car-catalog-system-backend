@@ -2,7 +2,6 @@ import { verifyToken } from "@/lib/authentication";
 import connectToDatabase from "@/lib/dbConfig/connectToDatabase";
 import { Response } from "@/lib/helpers/standardMessage";
 import { CarFamilyModel } from "@/lib/models/carFamilyModel";
-import { CarModel } from "@/lib/models/carModel";
 import { NextRequest } from "next/server";
 
 connectToDatabase();
@@ -16,55 +15,45 @@ export async function POST(request: NextRequest) {
     }
 
     const { adminId } = decoded;
-    let { name, make, model, photo, price, year, version, familyId } =
-      await request.json();
+    const { make, model, photo } = await request.json();
 
-    if (!name || !make || !model || !photo) {
+    if (!make || !model || !photo) {
       return Response({
         object: {
-          error: "Preencha os dados para cadastrar o veículo.",
+          error:
+            "Preencha todos os dados para cadastrar a família de veículos.",
           success: false,
         },
         status: 400,
       });
     }
 
-    const existingCar = await CarModel.findOne({ name });
+    const existingFamily = await CarFamilyModel.findOne({ make, model });
 
-    if (existingCar) {
+    if (existingFamily) {
       return Response({
         object: {
-          error: "Já existe um carro com esse nome.",
+          error: "Já existe.",
           success: false,
         },
         status: 400,
       });
     }
-
-    const defaultFamily = await CarFamilyModel.findOne({
-      make: "Carro",
-      model: "Sem Família",
-    });
 
     try {
-      const createdCar = new CarModel({
-        name,
+      const createdFamily = new CarFamilyModel({
         make,
         model,
         photo,
-        price,
-        familyId: familyId || defaultFamily._id,
-        year,
-        version,
         adminId,
       });
 
-      await createdCar.save();
+      await createdFamily.save();
 
       return Response({
         object: {
           error: null,
-          message: "Carro cadastrado com sucesso!",
+          message: "Cadastrada com sucesso!",
           success: true,
         },
         status: 200,
@@ -72,7 +61,7 @@ export async function POST(request: NextRequest) {
     } catch (error) {
       return Response({
         object: {
-          error: `Erro ao cadastrar o veículo: ${error}`,
+          error: `Erro ao cadastrar a família: ${error}`,
           success: false,
         },
         status: 500,

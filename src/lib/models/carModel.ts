@@ -7,7 +7,7 @@ const carSchema = new Schema(
     model: { type: String, required: true },
     photo: { type: String, required: true },
     price: { type: Number, required: true },
-    miniCardPhoto: {type: String},
+    familyId: { type: mongoose.Schema.Types.ObjectId, ref: "carFamilies" },
     year: { type: Number },
     version: { type: String },
     adminId: { type: mongoose.Schema.Types.ObjectId, ref: "admins" },
