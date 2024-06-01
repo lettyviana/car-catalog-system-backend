@@ -23,11 +23,9 @@
 
 <div style="display: inline_block" align="center"><br />
     <img src="https://img.shields.io/badge/Next.js-purple?style=for-the-badge&logo=nextdotjs" height="35px" alt="Next.js" align="center" />
-    <img src="https://img.shields.io/badge/Typescript-blue?style=for-the-badge&logo=typescript&logoColor=white
-    " height="35px" alt="TypeScript" align="center" />
+    <img src="https://img.shields.io/badge/Typescript-blue?style=for-the-badge&logo=typescript&logoColor=white" height="35px" alt="TypeScript" align="center" />
     <img src="https://img.shields.io/badge/Sass-pink?style=for-the-badge&logo=sass" height="35px" alt="Sass" align="center" />
-    <img src="https://img.shields.io/badge/Axios-purple?style=for-the-badge&logo=axios
-    " height="35px" alt="Axios" align="center" />
+    <img src="https://img.shields.io/badge/Axios-purple?style=for-the-badge&logo=axios" height="35px" alt="Axios" align="center" />
 </div><br />
 
 #
