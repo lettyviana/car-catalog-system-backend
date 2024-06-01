@@ -1,0 +1,121 @@
+@import "./variables.scss";
+
+.main-home-section {
+  section {
+    margin: 2rem 15% 0;
+  }
+
+  .search-nav {
+    &.fixed-section {
+      background-color: $gray7;
+      position: fixed;
+      scroll-behavior: smooth;
+      top: 0;
+      width: 100%;
+      z-index: 1111;
+    }
+
+    .results-and-ordering-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .section-title {
+        color: $gray5;
+        font-size: 0.875rem;
+      }
+
+      .results-and-ordering {
+        display: flex;
+        justify-content: space-between;
+
+        .results-container {
+          font-size: 0.875rem;
+        }
+
+        .ordering-container {
+          align-items: center;
+          display: flex;
+          position: relative;
+
+          .ordering-group {
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            gap: 5px;
+
+            span {
+              color: $black;
+              font-size: 0.875rem;
+              font-weight: 600;
+            }
+
+            .selected-option {
+              align-items: center;
+              color: $blue2;
+              display: flex;
+
+              svg {
+                height: 24px;
+                width: 24px;
+              }
+            }
+          }
+          .ordering-options {
+            display: none;
+
+            &.options-menu-open {
+              background-color: $white;
+              border-end-end-radius: 0.5rem;
+              border-end-start-radius: 0.5rem;
+              box-shadow: $dropdown-menu-box-shadow;
+              display: flex;
+              flex-direction: column;
+              inset-block-start: 100%;
+              inset-block-end: auto;
+              padding: 0.5rem;
+              position: absolute;
+              width: 100%;
+              z-index: 1060;
+
+              button {
+                background-color: transparent;
+                border-top: 1px solid $gray10;
+                border-left: 0;
+                border-right: 0;
+                border-bottom: 0;
+                color: $blue3;
+                cursor: pointer;
+                display: flex;
+                font-family: inherit;
+                font-size: 1rem;
+                justify-content: flex-start;
+                outline: none;
+                padding: 1rem;
+                overflow: hidden;
+
+                &:first-child {
+                  border-top: 1px solid transparent;
+                }
+
+                &:hover,
+                &.selected {
+                  border-top: 1px solid transparent;
+                  background-color: $gray6;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .car-model-carousel {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 1.5rem;
+  }
+}

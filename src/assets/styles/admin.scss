@@ -1,0 +1,19 @@
+@import "./variables.scss";
+
+.admin-section {
+  color: $gray7;
+  padding: 1%;
+  width: 100%;
+
+  .new-car-section,
+  .update-car-section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}

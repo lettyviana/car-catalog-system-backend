@@ -10,19 +10,19 @@ export async function GET(
 ) {
   try {
     const make = params.marca;
-    
+
     if (!make) {
-        return Response({
-            object: {
-                error: "Marca não especificada.",
-                success: false,
-            },
-            status: 400,
-        });
+      return Response({
+        object: {
+          error: "Marca não especificada.",
+          success: false,
+        },
+        status: 400,
+      });
     }
-    
+
     const carsByMake = await CarModel.find({ make: make });
-    
+
     if (!carsByMake || carsByMake.length === 0) {
       return Response({
         object: {

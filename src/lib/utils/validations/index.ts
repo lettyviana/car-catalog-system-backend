@@ -23,3 +23,14 @@ export function checkPasswordMatch(password: string, confirmPassword: string) {
     throw new Error("A senha e a confirmação de senha não correspondem!");
   }
 }
+
+export function checkEmail(email: string) {
+  const regex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+  if (email && !regex.test(email)) {
+    throw new Error("Insira um e-mail válido!");
+  }
+
+  return regex.test(email);
+}

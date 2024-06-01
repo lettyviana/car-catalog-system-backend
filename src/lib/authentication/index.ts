@@ -74,3 +74,7 @@ export async function verifyToken(request: NextRequest) {
 
   return decoded;
 }
+
+export async function logout() {
+  cookies().delete("authentication");
+}

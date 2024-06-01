@@ -10,19 +10,19 @@ export async function GET(
 ) {
   try {
     const model = params.modelo;
-    
+
     if (!model) {
-        return Response({
-            object: {
-                error: "Modelo não especificado.",
-                success: false,
-            },
-            status: 400,
-        });
+      return Response({
+        object: {
+          error: "Modelo não especificado.",
+          success: false,
+        },
+        status: 400,
+      });
     }
-    
+
     const carsByModel = await CarModel.find({ model: model });
-    
+
     if (!carsByModel || carsByModel.length === 0) {
       return Response({
         object: {

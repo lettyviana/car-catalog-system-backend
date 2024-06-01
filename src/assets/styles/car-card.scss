@@ -1,0 +1,96 @@
+@import "./variables.scss";
+
+.car-card-container {
+  background-color: $white;
+  border-radius: 0.5rem;
+  border: 1px solid $gray6;
+  display: flex;
+  flex-direction: column;
+  max-width: 23.5%;
+  overflow: hidden;
+  position: relative;
+
+  .delete-button {
+    background-color: $gray4;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+
+    svg {
+      fill: $red2;
+      height: 25px;
+      width: 25px;
+    }
+
+    &:hover {
+      background-color: $gray5;
+      cursor: pointer;
+      transition: background-color 0.5s;
+
+      svg {
+        fill: $white;
+      }
+    }
+  }
+  .car-card {
+    .image-container {
+      width: 100%;
+    }
+
+    .main-info-container {
+      .make-model-year-container,
+      .price-container {
+        border-bottom: 1px solid $gray6;
+        padding-block-end: 0.75rem;
+        padding-block-start: 0.75rem;
+        padding-inline-end: 1rem;
+        padding-inline-start: 1rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .make-model-year-container {
+        .year-version-container {
+          span {
+            color: $blue3;
+            font-size: 0.875rem;
+          }
+        }
+      }
+
+      .make-model-container,
+      .price-container {
+        font-size: 1rem;
+        color: $gray5;
+      }
+
+      .price-container {
+        .price-label {
+          color: $blue3;
+        }
+
+        .money-sign {
+          font-weight: 700;
+          line-height: normal;
+
+          .price {
+            font-size: 1.75rem;
+          }
+        }
+      }
+    }
+  }
+
+  &:hover {
+    box-shadow: $card-box-shadow;
+  }
+
+  &.admin-card-container {
+    border: 1px solid $gray5;
+
+    &:hover {
+      box-shadow: $admin-card-box-shadow;
+    }
+  }
+}

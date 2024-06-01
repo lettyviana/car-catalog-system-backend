@@ -1,0 +1,53 @@
+.select-container {
+  align-items: center;
+  background-color: $white;
+  border: 1px solid $gray9;
+  border-radius: 0.5rem;
+  display: flex;
+  gap: 10px;
+  padding-inline: 1rem;
+  position: relative;
+
+  &:focus-within {
+    border-color: $blue2;
+    transition: border-color 0.3s;
+  }
+
+  .select {
+    border: none;
+    color: $blue3;
+    font-size: 1rem;
+    outline: none;
+    padding-block: 0.75rem;
+    width: 100%;
+
+    &::placeholder {
+      visibility: hidden;
+    }
+
+    &:focus {
+      ~ .select-label {
+        background-color: $gray7;
+        color: $blue2;
+        font-size: 0.75rem;
+        top: -8px;
+      }
+    }
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      ~ .select-label {
+        background-color: $gray7;
+        font-size: 0.75rem;
+        top: -8px;
+      }
+    }
+  }
+
+  .select-label {
+    color: $blue3;
+    font-size: 1rem;
+    position: absolute;
+    z-index: 1;
+  }
+}

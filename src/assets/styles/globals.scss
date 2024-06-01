@@ -1,0 +1,98 @@
+@import "./variables.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: $gray7;
+}
+
+.admin-html {
+  background-color: $gray8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.black-logo {
+  height: 90%;
+  width: 100%;
+}
+
+.white-logo {
+  height: 90%;
+  width: 70%;
+}
+
+.car-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  width: 100%;
+
+  &.admin {
+    padding: 1% 0;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 1% 7%;
+}
+
+.error-message,
+.loading-message {
+  animation: attention 500ms ease-in-out infinite;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.error-message {
+  color: $red1;
+}
+
+.loading-message {
+  color: $green1;
+}
+
+@keyframes attention {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@import "./header.scss";
+@import "./navbar.scss";
+@import "./home.scss";
+@import "./promotion-slider.scss";
+@import "./search-box.scss";
+@import "./car-card.scss";
+@import "./login.scss";
+@import "./login-form.scss";
+@import "./form-input.scss";
+@import "./form-select.scss";
+@import "./submit-button.scss";
+@import "./admin.scss";
+@import "./admin-navbar.scss";
+@import "./car-form.scss";
+@import "./footer";

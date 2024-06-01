@@ -52,3 +52,42 @@ export async function PUT(
     });
   }
 }
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const decoded = await verifyToken(request);
+
+    if (decoded.status) {
+      return decoded;
+    }
+
+    const { id } = params;
+    const existingCar = await CarModel.findOne({ _id: id });
+
+    if (!existingCar) {
+      return Response({
+        object: {
+          error: "Veículo não encontrado.",
+          success: false,
+        },
+        status: 401,
+      });
+    }
+
+    return Response({
+      object: { error: null, car: existingCar, success: true },
+      status: 200,
+    });
+  } catch (error: any) {
+    return Response({
+      object: {
+        error: error.message,
+        success: false,
+      },
+      status: 501,
+    });
+  }
+}

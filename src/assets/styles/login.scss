@@ -1,0 +1,13 @@
+@import "./variables.scss";
+
+.login-container {
+  background-color: $gray7;
+  display: flex;
+  height: calc(100vh - 212px);
+
+  img {
+    width: 35%;
+    max-width: 900px;
+    height: 100%;
+  }
+}

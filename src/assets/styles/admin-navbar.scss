@@ -1,0 +1,61 @@
+@import "./variables.scss";
+
+.navigation {
+  .nav-container {
+    align-items: center;
+    background-color: $gray4;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5% 1%;
+    width: 100%;
+
+    .user-details {
+      .section-title {
+        .username {
+          color: $blue1;
+          font-weight: 900;
+        }
+      }
+    }
+
+    .options {
+      display: flex;
+      gap: 25px;
+
+      a {
+        background-color: $blue4;
+        border: 1px solid transparent;
+        border-radius: 0.5rem;
+        color: $white;
+        font-weight: 800;
+        opacity: 0.7;
+        padding: 5px 20px;
+
+        &:hover {
+          border-color: $blue1;
+          opacity: 1;
+          transition: all 0.8s;
+        }
+      }
+
+      .logout-button {
+        background-color: $gray8;
+        border: 2px solid $blue1;
+        border-radius: 0.5rem;
+        color: $white;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 800;
+        padding: 5px 15px;
+
+        &:hover {
+          background-color: transparent;
+          color: $black;
+          transition: all 0.6s;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.secondary-nav-container {
+  display: flex;
+  background-color: $blue2;
+  border-radius: 0.25rem;
+  padding: 5px 0;
+  width: 100%;
+
+  .search-container {
+    align-items: center;
+    background-color: $white;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 15%;
+    padding: 0.9rem;
+    overflow: hidden;
+    width: 100%;
+
+    input {
+      border: none;
+      color: $gray5;
+      font-size: 1rem;
+      outline: none;
+      width: 100%;
+
+      ::placeholder {
+        color: $gray5;
+      }
+    }
+
+    svg {
+      color: $gray4;
+      cursor: pointer;
+      height: 24px;
+      width: 24px;
+
+      &.active {
+        color: $blue1;
+      }
+    }
+  }
+}

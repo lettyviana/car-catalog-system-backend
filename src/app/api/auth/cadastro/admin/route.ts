@@ -2,6 +2,7 @@ import connectToDatabase from "@/lib/dbConfig/connectToDatabase";
 import { Response } from "@/lib/helpers/standardMessage";
 import { AdminUserModel } from "@/lib/models/userModel";
 import {
+  checkEmail,
   checkExistingUser,
   checkPasswordMatch,
   checkPasswordStrength,
@@ -25,6 +26,18 @@ export async function POST(request: Request) {
 
   try {
     await checkExistingUser(email);
+  } catch (error: any) {
+    return Response({
+      object: {
+        error: error.message,
+        success: false,
+      },
+      status: 500,
+    });
+  }
+
+  try {
+    checkEmail(email);
   } catch (error: any) {
     return Response({
       object: {
